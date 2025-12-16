@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor 💌</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffc3e1 0%, #e0c3fc 50%, #ffb3ba 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Corazones flotantes */
+        .floating-heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            color: rgba(255, 105, 180, 0.7);
+            animation: float-up linear infinite;
+            pointer-events: none;
+            font-size: 30px;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Sobre cerrado */
+        .envelope-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .sparkle {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                opacity: 1; 
+                transform: translateX(-50%) scale(1); 
+            }
+            50% { 
+                opacity: 0.5; 
+                transform: translateX(-50%) scale(1.2); 
+            }
+        }
+
+        .envelope-button {
+            background: linear-gradient(135deg, #f87171 0%, #ec4899 100%);
+            color: white;
+            border: none;
+            padding: 40px 60px;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .envelope-button:hover {
+            transform: scale(1.1);
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: scale(1.1) rotate(-2deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        .envelope-icon {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .heart-badge {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: #ef4444;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Carta abierta */
+        .letter-container {
+            display: none;
+            background: linear-gradient(to bottom, #fff9f0 0%, #fff5eb 100%);
+            max-width: 700px;
+            width: 90%;
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: pulse-glow 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(255, 105, 180, 0.5);
+            }
+            50% {
+                box-shadow: 0 20px 80px rgba(255, 105, 180, 0.8);
+            }
+        }
+
+        .letter-container.show {
+            display: block;
+        }
+
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .heart-icon {
+            font-size: 30px;
+            color: #ff69b4;
+        }
+
+        .letter-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-wrap;
+            margin-bottom: 40px;
+        }
+
+        .cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .letter-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-heart {
+            font-size: 20px;
+            color: #ff69b4;
+        }
+
+        .footer-heart-big {
+            font-size: 30px;
+            color: #ff1493;
+        }
+
+        .close-button {
+            background: linear-gradient(135deg, #ec4899 0%, #ef4444 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .close-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .envelope-button {
+                padding: 30px 40px;
+                font-size: 20px;
+            }
+
+            .envelope-icon {
+                font-size: 60px;
+            }
+
+            .letter-container {
+                padding: 30px 20px;
+            }
+
+            .letter-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor de corazones flotantes -->
+    <div id="hearts-container"></div>
+
+    <!-- Sobre cerrado -->
+    <div id="envelope" class="envelope-container">
+        <div class="sparkle">✨</div>
+        <button class="envelope-button" onclick="openLetter()">
+            <span class="envelope-icon">✉️</span>
+            Abrir Carta
+            <div class="heart-badge">❤️</div>
+        </button>
+    </div>
+
+    <!-- Carta abierta -->
+    <div id="letter" class="letter-container">
+        <div class="letter-header">
+            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">✨</span>
+            <span class="heart-icon">❤️</span>
+        </div>
+
+        <div class="letter-text" id="letter-text"></div>
+
+        <div class="letter-footer">
+            <span class="footer-heart">❤️</span>
+            <span class="footer-heart-big">❤️</span>
+            <span class="footer-heart">❤️</span>
+        </div>
+
+        <button class="close-button" onclick="closeLetter()">Cerrar carta</button>
+    </div>
+
+    <script>
+        const letterContent = `Mi amor,
+
+Cada día que pasa a tu lado es un regalo que atesoro en mi corazón. Eres la razón por la que sonrío sin motivo, la calma en medio de la tormenta, y la luz que ilumina incluso mis días más oscuros.
+
+Contigo he descubierto que el amor no es solo una palabra, sino un sentimiento que se vive en cada mirada, en cada abrazo, en cada momento compartido. Eres mi mejor amigo, mi confidente, mi inspiración.
+
+Quiero que sepas que cada latido de mi corazón pronuncia tu nombre, y que no hay lugar en este mundo donde prefiera estar que a tu lado.
+
+Gracias por existir, por amarme, por ser exactamente quien eres.
+
+Con todo mi amor,
+Siempre tuyo/tuya ♥`;
+
+        let typingIndex = 0;
+        let typingInterval;
+
+        // Crear corazones flotantes
+        function createFloatingHearts() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = i * 0.5 + 's';
+                heart.style.animationDuration = (8 + Math.random() * 4) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Efecto de escritura
+        function typeWriter() {
+            const textElement = document.getElementById('letter-text');
+            if (typingIndex < letterContent.length) {
+                textElement.textContent = letterContent.substring(0, typingIndex + 1);
+                textElement.innerHTML += '<span class="cursor">|</span>';
+                typingIndex++;
+            } else {
+                clearInterval(typingInterval);
+                textElement.textContent = letterContent;
+            }
+        }
+
+        // Abrir carta
+        function openLetter() {
+            document.getElementById('envelope').classList.add('hidden');
+            document.getElementById('letter').classList.add('show');
+            
+            // Crear corazones flotantes
+            createFloatingHearts();
+            
+            // Iniciar efecto de escritura
+            typingIndex = 0;
+            typingInterval = setInterval(typeWriter, 30);
+        }
+
+        // Cerrar carta
+        function closeLetter() {
+            document.getElementById('letter').classList.remove('show');
+            document.getElementById('envelope').classList.remove('hidden');
+            
+            // Limpiar corazones
+            document.getElementById('hearts-container').innerHTML = '';
+            
+            // Limpiar texto
+            document.getElementById('letter-text').textContent = '';
+            clearInterval(typingInterval);
+        }
+    </script>
+</body>
+</html>
