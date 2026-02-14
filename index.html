@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PARA: ABIGAIL 💌</title>
+    <title>Carta de Amor 💌</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
     <style>
         * {
@@ -19,8 +19,11 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #ffc3e1 0%, #e0c3fc 50%, #ffb3ba 100%);
-            overflow: hidden;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
+            padding: 50px 20px;
         }
 
         /* Corazones flotantes */
@@ -136,6 +139,7 @@
             position: relative;
             text-align: center;
             z-index: 5;
+            margin-bottom: 180px;
         }
 
         .sparkle {
@@ -215,7 +219,8 @@
             animation: pulse-glow 2s ease-in-out infinite;
             position: relative;
             z-index: 5;
-            margin-bottom: 100px;
+            margin-bottom: 180px;
+            margin-top: 20px;
         }
 
         @keyframes pulse-glow {
@@ -347,7 +352,8 @@
         <div class="sparkle">✨</div>
         <button class="envelope-button" onclick="openLetter()">
             <span class="envelope-icon">✉️</span>
-            Si me abres, no hay vuelta atrás
+            Abrir Carta
+            <div class="heart-badge">❤️</div>
         </button>
     </div>
 
@@ -371,12 +377,18 @@
     </div>
 
     <script>
-        const letterContent = `Abigail,
-Honestamente siempre pensé que sería imposible llegar a conocerte, y es más no pensé llegar a escribirte una carta, a perder el sueño por ti, a divertirme jugando contigo, a ver una serie; que hasta ahora no acabamos, a ponerme modo celoso, dramático, random, nervioso, cursi, exagerado... en resumen es cierto que para lo que para mi no es posible para Dios lo fue y lo es.
-Y creo que la poesía sentiría envidia de ti, envidia de como atraviesa tus ojos para hacer que broten todo esto lindo por ti, y como una delicada flor por nacer, asi te veo cuando sonries; finalmente mi ojos daltónicos ven los colores más vivos en ti, si me preguntaran cual es tu color favorito, diría: Abigail.
+        const letterContent = `Mi amor,
 
-Asi que, Dios siga enseñándonos, guiandonos, cuidandonos, dándonos templanza en esto que estamos formando, y mi decisión está con él, y por lo tanto tengo la decisión de querer estar contigo.
-Entonces, ¿una más? ♥`;
+Cada día que pasa a tu lado es un regalo que atesoro en mi corazón. Eres la razón por la que sonrío sin motivo, la calma en medio de la tormenta, y la luz que ilumina incluso mis días más oscuros.
+
+Contigo he descubierto que el amor no es solo una palabra, sino un sentimiento que se vive en cada mirada, en cada abrazo, en cada momento compartido. Eres mi mejor amigo, mi confidente, mi inspiración.
+
+Quiero que sepas que cada latido de mi corazón pronuncia tu nombre, y que no hay lugar en este mundo donde prefiera estar que a tu lado.
+
+Gracias por existir, por amarme, por ser exactamente quien eres.
+
+Con todo mi amor,
+Siempre tuyo/tuya ♥`;
 
         let typingIndex = 0;
         let typingInterval;
